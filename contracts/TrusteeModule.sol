@@ -1,46 +1,37 @@
 // SPDX-License-Identifier: LGPL-3.0-only
 pragma solidity >=0.7.0 <0.9.0;
 
-import "./common/Enum.sol";
-import "@openzeppelin/contracts/governance/TimelockController.sol";
+import "./safe/common/Enum.sol";
+import "./safe/common/SelfAuthorized.sol";
+import "./libraries/TransferHelper.sol";
+import "./interface/GnosisSafe.sol";
+import "./openzeppelin/governance/TimelockController.sol";
 
-interface GnosisSafe {
-    /// @dev Allows a Module to execute a Safe transaction without any further confirmations.
-    /// @param to Destination address of module transaction.
-    /// @param value Ether value of module transaction.
-    /// @param data Data payload of module transaction.
-    /// @param operation Operation type of module transaction.
-    function execTransactionFromModule(address to, uint256 value, bytes calldata data, Enum.Operation operation)
-        external
-        returns (bool success);
-}
+/**
+ * @title Trustee Module - A module for trustee to join and exit the fund by interacting with the Cruiser (fund based on gnosis safe)
+ * @dev White-listed trustees can propose for customers to join or exit the fund at certain price level.
+ *      This is done by the following procedure:
+ *      - White-listing trustees: Trustees are proposers in the AccessControl contract.
+ *      - Proposing Offers: Trustees can propose an offer to join by investing a certain amount of tokens or exit by withdrawing  a certain amount of tokens.
+ *      - Time locking: Proposes are time-locked for a while, let's say one day.
+ *      - Accepting Offers: The offer is accepted by the gnosis safe, which is the executor in the AccessControl contract.
+ *    
 
-
-contract TrusteeModule is TimelockController{
+ * @author Troll Meyer 
+ */
+contract TrusteeModule is TimelockController, SelfAuthorized{
     string public constant NAME = "Trustee Module";
     string public constant VERSION = "0.1.0";
 
     GnosisSafe public SAFE;
 
-    bytes32 public constant TRANSFER_TOKEN_TYPEHASH = 0x80b006280932094e7cc965863eb5118dc07e5d272c6670c4a7c87299e04fceeb;
-    // keccak256(
-    //     "transferToken(address token, address receiver, uint256 amount)"
-    // );
-
-    bytes32 public constant INVEST_AND_MINT_TYPEHASH = 0x80b006280932094e7cc965863eb5118dc07e5d272c6670c4a7c87299e04fceeb;
-    // keccak256(
-    //     "transferToken(address token, address receiver, uint256 amount)"
-    // );
-
-    bytes32 public constant WITHDRAW_AND_BURN_TYPEHASH = 0x80b006280932094e7cc965863eb5118dc07e5d272c6670c4a7c87299e04fceeb;
-    // keccak256(
-    //     "transferToken(address token, address receiver, uint256 amount)"
-    // );
-
 
     /*
     constructor of TimelockController:
-    uint256 minDelay, address[] memory proposers, address[] memory executors, address admin
+        uint256 minDelay, address[] memory proposers, address[] memory executors, address admin
+        minDelay -> 1 days
+        proposers -> initialTrustee
+        executors -> only by gnosis safe
     */
     constructor (
         address bindingSafe,
@@ -49,8 +40,30 @@ contract TrusteeModule is TimelockController{
         SAFE = bindingSafe;
     }
 
-    function investViaTrustee();
+    function _joinViaTrustee(address payer,
+        address receiver,
+        uint256 mintAmount,
+        address investToken,
+        uint256 investAmount
+    ) public payable authorized {
 
-    function withdrawViaTrustee();
+    }
+
+    function joinViaTrustee(address payer,
+        address receiver,
+        uint256 mintAmount,
+        address investToken,
+        uint256 investAmount
+    ) public payable {
+
+    }
+
+    function joinViaTrusteeBatch();
+
+    function _exitViaTrustee();
+
+    function exitViaTrustee();
+
+    function exitViaTrusteeBatch();
 
 }
