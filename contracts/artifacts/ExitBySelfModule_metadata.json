@@ -1,0 +1,312 @@
+{
+	"compiler": {
+		"version": "0.8.18+commit.87f61d96"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "bindingSafe",
+						"type": "address"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "constructor"
+			},
+			{
+				"inputs": [],
+				"name": "NAME",
+				"outputs": [
+					{
+						"internalType": "string",
+						"name": "",
+						"type": "string"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "SAFE",
+				"outputs": [
+					{
+						"internalType": "contract GnosisSafe",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "VERSION",
+				"outputs": [
+					{
+						"internalType": "string",
+						"name": "",
+						"type": "string"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "receiver",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "burnAmount",
+						"type": "uint256"
+					},
+					{
+						"internalType": "address[]",
+						"name": "exitTokens",
+						"type": "address[]"
+					}
+				],
+				"name": "burnAndExit",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "success",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"author": "Troll Meyer ",
+			"details": "Customer can interact with exitAndBurn function in the Cruiser. Note: In the near future, this module will be updated in the following ways:  - Withdraw as single token: integrated with AMM to auto-switch exit tokens to one token.  - Smart fees: Exit procedure may face flexible fees to avoid malicious exit requests.",
+			"kind": "dev",
+			"methods": {},
+			"title": "Exit By Self Module - A module for customer to exit the fund by himself",
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"ExitBySelfModule.sol": "ExitBySelfModule"
+		},
+		"evmVersion": "paris",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": true,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"Cruiser.sol": {
+			"keccak256": "0x6374b6716e4ccf058a568288a2b00f6ded5684815f6de2166c5aa49ed4a5a0a1",
+			"license": "LGPL-3.0-only",
+			"urls": [
+				"bzz-raw://fa0e7dcfe7427e8981971ed5b6dc11372dcd93c8b7e0c85734da7afa456d6948",
+				"dweb:/ipfs/QmSNBaisCXL7kwCwPYCFEhuzh4F4emFy1FsTkeDhZynVUT"
+			]
+		},
+		"ExitBySelfModule.sol": {
+			"keccak256": "0x19defe28682dcb28e3c5d51a462fe79ae0970b31983dbde82a70d05e08bad949",
+			"license": "LGPL-3.0-only",
+			"urls": [
+				"bzz-raw://face7ce9b418caa805de126ef87194e340a456a417b888ad445fc0a3d58015be",
+				"dweb:/ipfs/QmWJVuLxq3fXowCcHjQ4ZfJW98qMGXfAXwQZE8WV3rr65g"
+			]
+		},
+		"interface/GnosisSafe.sol": {
+			"keccak256": "0x6ef0e465a30e689562d73a2e20128fc3946d285ba4e6dd7c3c5c7a0caadc7945",
+			"license": "LGPL-3.0-only",
+			"urls": [
+				"bzz-raw://3f3d656a7242fb29f3829e40c10cb7887ba7a898383dbca8cfdaa287f4a1a1ec",
+				"dweb:/ipfs/QmWVBw8XuR4cJraCXNKvYeWcvuVovGD1CjXPkpwCb1vFid"
+			]
+		},
+		"libraries/TransferHelper.sol": {
+			"keccak256": "0xeea8564e527b64b5201b31c01f713ee2b6897eb63fb83bf1b0da7a82b668b60c",
+			"license": "GPL-3.0-or-later",
+			"urls": [
+				"bzz-raw://936050173b4c572e0193bb232579b2fe5a714faa83c43476568c707c022674f4",
+				"dweb:/ipfs/QmQzNm9bZ546rak7DZaucYZFU1dUUVrEFbTf9RqLG3XekD"
+			]
+		},
+		"openzeppelin/token/ERC20/ERC20.sol": {
+			"keccak256": "0x65c18f8f3f113a38ad81b70b927f72d0d4c5be7e204e715a82da7f3e04aa5bb4",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://c1406a337a5c2a595ca1b777c8d3ee1acf74963f6d3bc391bee446ffafdc8b65",
+				"dweb:/ipfs/QmSbC3AikgqLSj6XucgCu5D8G14CyhL9vnqCFdWkxjdY8J"
+			]
+		},
+		"openzeppelin/token/ERC20/IERC20.sol": {
+			"keccak256": "0x206e252911fb60d0d6a54fb657b64344c33fa237ddb8553aa668a24d1856a7c2",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://4cb73e8c2fd4ab43f4ed672a19fd7629fc169034dc461524bebd67d9fe9bb000",
+				"dweb:/ipfs/Qmd9wCoy5gDduquSq7po6uNFx9W28zS5drXXErDnN24aNZ"
+			]
+		},
+		"openzeppelin/token/ERC20/extensions/IERC20Metadata.sol": {
+			"keccak256": "0x0270cb4e50d6bcdd780df229606076d39df796860d266b5426f374c36f34fe89",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://511db944b3f0a57b56fda90d1e466cca6a0dea2297d816251966c8f025313973",
+				"dweb:/ipfs/QmRgu5uCaKkoRr3amWGfhy6bVwhpH5tr1vynaNQyEYiE4p"
+			]
+		},
+		"openzeppelin/utils/Context.sol": {
+			"keccak256": "0x2c36c9489879b7c91cdd73bbe8b2584f401aa26f4f252c04f053e824d6ca75c6",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://3ef20575fc12fd27f252acd28a8d0f65893832f29fd9c82f7ec165121af4572f",
+				"dweb:/ipfs/QmZMCoWWDTjhs1CNFMWv4JNWVyyeuzyqteCHhF4heCUYJJ"
+			]
+		},
+		"safe/Safe.sol": {
+			"keccak256": "0xdeaaec6d0c14e8669a5593ea0ad93109661027d5959243f4722e224a65b6b531",
+			"license": "LGPL-3.0-only",
+			"urls": [
+				"bzz-raw://cf220c2644c7a7fab7360764769a68e4de7fe8aa924d2507ca4567576abe830f",
+				"dweb:/ipfs/QmRuWsU9tqb6JPdwqPtbunKtzvb1xLqUNcnKYcLjMmG78x"
+			]
+		},
+		"safe/base/Executor.sol": {
+			"keccak256": "0xbb3e6d83c3af666762b190e9ad00f31f577062954d5ae70fdf9d12fa74a51654",
+			"license": "LGPL-3.0-only",
+			"urls": [
+				"bzz-raw://4c1c352cb62f2afbe8d1d7c689ba15b798efe98a8b5314922bfa68b1d862eaad",
+				"dweb:/ipfs/QmVNsnD6E5t9tcyF6ZgWCi75LdN7iGkJdb1dohPcE5PQy3"
+			]
+		},
+		"safe/base/FallbackManager.sol": {
+			"keccak256": "0x457a07fd77be5572c971dde9ee90888136b017e5f476b13ef2928a9341b3213d",
+			"license": "LGPL-3.0-only",
+			"urls": [
+				"bzz-raw://ea8979ccf92b8cec30421349e312e1411d592901cfb86b553777066a0f78d715",
+				"dweb:/ipfs/QmVNJtHC2DjonVXFBJ3VpJUXtQA1bJeCrSucQNyTLXRD7v"
+			]
+		},
+		"safe/base/GuardManager.sol": {
+			"keccak256": "0xa6fd43cd6ed443c1eaed7e210eef9fbd2ae6eaa2cf6f01f64efa9a42bf5dc61e",
+			"license": "LGPL-3.0-only",
+			"urls": [
+				"bzz-raw://eb2bbdfc8d9a3550d049f6efa308125a48896151e4706c72b93720f34f038465",
+				"dweb:/ipfs/QmTqUnhndi4bD81mB5yF65LyxNY5qZTA4Ncth3YkZ7YYtR"
+			]
+		},
+		"safe/base/ModuleManager.sol": {
+			"keccak256": "0xe87a731ba8733810c6898664ab31230a890f1c4477e909b78b6c6abe03d50c0b",
+			"license": "LGPL-3.0-only",
+			"urls": [
+				"bzz-raw://7fdbdd7ae44af84bae6103663d64ff86dadc53a51cb4582c62352fe845112da9",
+				"dweb:/ipfs/QmVq1FsC41yjqoHhjaPZW2FEGXWQNfb6gET7Lm4yFc3w8N"
+			]
+		},
+		"safe/base/OwnerManager.sol": {
+			"keccak256": "0xd15452b10b4cb7a13688f526a6767650aece5817285997790729cbc6af50d775",
+			"license": "LGPL-3.0-only",
+			"urls": [
+				"bzz-raw://711fc984a1393040e21b05fdd146741c429988cf0156277e7db94e922749fa36",
+				"dweb:/ipfs/QmRr6asi11Dt6R8H7hxh2krzbV6j7GVfMF9hY2cTE3e3WS"
+			]
+		},
+		"safe/common/Enum.sol": {
+			"keccak256": "0xbba96a36a652a63ab1971254474595fd2bb3741f0f589bcf85fccc79d42285bd",
+			"license": "LGPL-3.0-only",
+			"urls": [
+				"bzz-raw://1476f4efd26bd34822318d506d32ea87df53653fdce35dbfde004a149dac1d22",
+				"dweb:/ipfs/QmVGx4Bm3EE3wao59Ezck6bsyZ8rc7ALe74XCq9ctSWToz"
+			]
+		},
+		"safe/common/NativeCurrencyPaymentFallback.sol": {
+			"keccak256": "0xbfe4b360d701aadb4464ff9f47fd34dd2ad9265a4db281b4a1fb540ba6693cd3",
+			"license": "LGPL-3.0-only",
+			"urls": [
+				"bzz-raw://fce67cb4d8dbf64c803237ff204296fa1b8f9edf607d17c93bdca50277b3e252",
+				"dweb:/ipfs/QmbE1GrJ9dg1MAV8skPgeoxEdGekcax2Meg7RGQFHyqDNm"
+			]
+		},
+		"safe/common/SecuredTokenTransfer.sol": {
+			"keccak256": "0x0cccd5b17b67f1555aacaf3f0c244c10fef90c37d74b5bf9529a70b3f8e15e1b",
+			"license": "LGPL-3.0-only",
+			"urls": [
+				"bzz-raw://ffd3f5bf317a0f0a8a24350016e2ba9a1fb1176318840b444f00885f86b5b9fc",
+				"dweb:/ipfs/QmaSGKuqAdKSKrNxxmzcfcGmWKmXYwXbbpTM5Mc96aMkN9"
+			]
+		},
+		"safe/common/SelfAuthorized.sol": {
+			"keccak256": "0xbf093baddfd5741f8b496b403e0dfc74b8d7968f8c2fd3e726d13fe0d0a463d7",
+			"license": "LGPL-3.0-only",
+			"urls": [
+				"bzz-raw://6b463f0e814d3c9508c416583e9215a641521cb8cee958cc7cdacab953498cb3",
+				"dweb:/ipfs/QmRrzLRLUBCXJDUCUZM6Zyy6oEV5oKAXvM49hRPrM8LwGk"
+			]
+		},
+		"safe/common/SignatureDecoder.sol": {
+			"keccak256": "0xf7841ad2ea634e128e57b9c70b7eea0587b3696fffae5fe7f0eb333119b09f2c",
+			"license": "LGPL-3.0-only",
+			"urls": [
+				"bzz-raw://f12c9654910660668f5999160e2149774dc448e13703ebd4db3a6927b5642aa2",
+				"dweb:/ipfs/QmT33RhGEJEDHiKwgiw9euxtpvFthPAdBNg74P57U4Uq4N"
+			]
+		},
+		"safe/common/Singleton.sol": {
+			"keccak256": "0x7640c4efb424a2ee49180368a225b19c70f315ba5c1c65ae0d1413df54d941cc",
+			"license": "LGPL-3.0-only",
+			"urls": [
+				"bzz-raw://d978800ce6a89748ffda70fa0f84310eda1b17ab63601fa85afb357f0ccbcfa8",
+				"dweb:/ipfs/QmNiBhZAYtPoRoCaKxWXYs7TtCjXo8zHbPCbdrcYvaHVJa"
+			]
+		},
+		"safe/common/StorageAccessible.sol": {
+			"keccak256": "0x9bcb970491e568d1e86c9cdbb11c28f7ae8a335e715377350a5c24e804022289",
+			"license": "LGPL-3.0-only",
+			"urls": [
+				"bzz-raw://19815daa67075c22e1acf5bbbf358fa9dba928f93eab8a62c915ebdee3b88b48",
+				"dweb:/ipfs/QmZ4Rox8YbY9eLiwKk5CXHHYVmmiHBxZaMGMozRFFrDF9M"
+			]
+		},
+		"safe/external/SafeMath.sol": {
+			"keccak256": "0xa1c6b35e6adaa61f473db3e660b238826d37cf36a6c82ee3d140314d80295bab",
+			"license": "LGPL-3.0-only",
+			"urls": [
+				"bzz-raw://627530198d208c3788a766530313f6879165498156b0f1561dcc986e7c4caa2c",
+				"dweb:/ipfs/QmQZJwgZk4FVG4vm7WLmJH2H4kkDiwY9Cnwp6GWqjmpx1w"
+			]
+		},
+		"safe/interfaces/IERC165.sol": {
+			"keccak256": "0x9606d417e73b051594c5270abb703dd4d164b3da737aafd2b8d0c2407c19b093",
+			"license": "LGPL-3.0-only",
+			"urls": [
+				"bzz-raw://46073f9beca1b9323a27bc6a90ad1ae052a0814f2aa34e3d703da14f4c65479b",
+				"dweb:/ipfs/QmTSTLwVtnugBR5WYh8Y75DaLKap8bQvbTzE7McoxzejU8"
+			]
+		},
+		"safe/interfaces/ISignatureValidator.sol": {
+			"keccak256": "0x6fca6665b4f5fc288dd619f044e415647f1e5aa6091bbdf9b57c8611c8e2d53b",
+			"license": "LGPL-3.0-only",
+			"urls": [
+				"bzz-raw://9a67ad4dcc7f7e8fc16315c0f87774277dcd4ba134bc851349a10865d25b4efb",
+				"dweb:/ipfs/QmdPZX3YwXg5oKk347EA8puw5ytWr75cpE8avC85fxmJCh"
+			]
+		}
+	},
+	"version": 1
+}

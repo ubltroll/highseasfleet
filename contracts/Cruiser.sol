@@ -5,9 +5,21 @@ import "./safe/Safe.sol";
 import "./safe/external/SafeMath.sol";
 import "./libraries/TransferHelper.sol";
 import "./openzeppelin/token/ERC20/ERC20.sol";
-import "./openzeppelin/token/ERC20/IERC20.sol";
 
-contract Cruiser is Safe {
+
+/**
+ * @title Cruiser - A de-fund based on Gnosis Safe.
+ * @dev Cruiser = Safe + ERC20 + {Module}.
+ *  Share of fund is calculated by amount of ERC20 tokens.
+ *  Investors can join and exit the fund in many ways.
+ *  Concepts:
+ *  - Join: Invest tokens to join the fund. This action will mint more shares.
+ *  - Exit: Withdraw tokens and exit the fund. This action will burn shares accordingly.
+
+ * @author Troll Meyer 
+ */
+
+contract Cruiser is Safe, ERC20 {
   using SafeMath for uint256;
   address public owner = msg.sender;
   uint public last_completed_migration;
@@ -34,32 +46,34 @@ contract Cruiser is Safe {
         if (investToken != address(0)){
             TransferHelper.safeTransferFrom(
                 investToken, payer, address(this), investAmount);
-            Join(receiver, mintAmount, investToken, investAmount);
+            emit Join(receiver, mintAmount, investToken, investAmount);
         } else {
-            Join(receiver, mintAmount, address(0), msg.value);
+            emit Join(receiver, mintAmount, address(0), msg.value);
         }
         _mint(receiver, mintAmount);
   }
 
-  function exitAndBurn(
+  function burnAndExit(
         address account,
         address receiver,
         uint256 burnAmount,
-        address[] exitTokens
+        address[] calldata exitTokens
     ) public authorized{
-        for (uint i; i < withdrawTokens.length; i++){
-            if (exitTokens != address(0)){
+        //TODO: remove duplicates in exitTokens
+
+        for (uint i; i < exitTokens.length; i++){
+            if (exitTokens[i] != address(0)){
                 TransferHelper.safeTransfer(
-                    exitTokens, receiver,
-                    IERC20(exitTokens).balanceOf(address(this)).mul(burnAmount).div(totalSupply())
+                    exitTokens[i], receiver,
+                    IERC20(exitTokens[i]).balanceOf(address(this)).mul(burnAmount)/(totalSupply())
                     );
             } else {
                 TransferHelper.safeTransferETH(
-                    receiver, this.balance.mul(burnAmount).div(totalSupply())
+                    receiver, address(this).balance.mul(burnAmount)/(totalSupply())
                     );
             }
         }
-        Exit(account, burnAmount);
+        emit Exit(account, burnAmount);
         _burn(account, burnAmount);
   }
 }

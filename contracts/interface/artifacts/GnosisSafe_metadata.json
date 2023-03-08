@@ -1,0 +1,98 @@
+{
+	"compiler": {
+		"version": "0.8.18+commit.87f61d96"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "to",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "value",
+						"type": "uint256"
+					},
+					{
+						"internalType": "bytes",
+						"name": "data",
+						"type": "bytes"
+					},
+					{
+						"internalType": "enum Enum.Operation",
+						"name": "operation",
+						"type": "uint8"
+					}
+				],
+				"name": "execTransactionFromModule",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "success",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {
+				"execTransactionFromModule(address,uint256,bytes,uint8)": {
+					"details": "Allows a Module to execute a Safe transaction without any further confirmations.",
+					"params": {
+						"data": "Data payload of module transaction.",
+						"operation": "Operation type of module transaction.",
+						"to": "Destination address of module transaction.",
+						"value": "Ether value of module transaction."
+					}
+				}
+			},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"interface/GnosisSafe.sol": "GnosisSafe"
+		},
+		"evmVersion": "paris",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": true,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"interface/GnosisSafe.sol": {
+			"keccak256": "0x6ef0e465a30e689562d73a2e20128fc3946d285ba4e6dd7c3c5c7a0caadc7945",
+			"license": "LGPL-3.0-only",
+			"urls": [
+				"bzz-raw://3f3d656a7242fb29f3829e40c10cb7887ba7a898383dbca8cfdaa287f4a1a1ec",
+				"dweb:/ipfs/QmWVBw8XuR4cJraCXNKvYeWcvuVovGD1CjXPkpwCb1vFid"
+			]
+		},
+		"safe/common/Enum.sol": {
+			"keccak256": "0xbba96a36a652a63ab1971254474595fd2bb3741f0f589bcf85fccc79d42285bd",
+			"license": "LGPL-3.0-only",
+			"urls": [
+				"bzz-raw://1476f4efd26bd34822318d506d32ea87df53653fdce35dbfde004a149dac1d22",
+				"dweb:/ipfs/QmVGx4Bm3EE3wao59Ezck6bsyZ8rc7ALe74XCq9ctSWToz"
+			]
+		}
+	},
+	"version": 1
+}

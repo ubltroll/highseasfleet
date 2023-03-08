@@ -1,0 +1,1471 @@
+{
+	"compiler": {
+		"version": "0.8.18+commit.87f61d96"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "bindingSafe",
+						"type": "address"
+					},
+					{
+						"internalType": "address[]",
+						"name": "initialTrustee",
+						"type": "address[]"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "constructor"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "bytes32",
+						"name": "id",
+						"type": "bytes32"
+					},
+					{
+						"indexed": true,
+						"internalType": "uint256",
+						"name": "index",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "address",
+						"name": "target",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "value",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "bytes",
+						"name": "data",
+						"type": "bytes"
+					}
+				],
+				"name": "CallExecuted",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "bytes32",
+						"name": "id",
+						"type": "bytes32"
+					},
+					{
+						"indexed": false,
+						"internalType": "bytes32",
+						"name": "salt",
+						"type": "bytes32"
+					}
+				],
+				"name": "CallSalt",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "bytes32",
+						"name": "id",
+						"type": "bytes32"
+					},
+					{
+						"indexed": true,
+						"internalType": "uint256",
+						"name": "index",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "address",
+						"name": "target",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "value",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "bytes",
+						"name": "data",
+						"type": "bytes"
+					},
+					{
+						"indexed": false,
+						"internalType": "bytes32",
+						"name": "predecessor",
+						"type": "bytes32"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "delay",
+						"type": "uint256"
+					}
+				],
+				"name": "CallScheduled",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "bytes32",
+						"name": "id",
+						"type": "bytes32"
+					}
+				],
+				"name": "Cancelled",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "oldDuration",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256",
+						"name": "newDuration",
+						"type": "uint256"
+					}
+				],
+				"name": "MinDelayChange",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "bytes32",
+						"name": "role",
+						"type": "bytes32"
+					},
+					{
+						"indexed": true,
+						"internalType": "bytes32",
+						"name": "previousAdminRole",
+						"type": "bytes32"
+					},
+					{
+						"indexed": true,
+						"internalType": "bytes32",
+						"name": "newAdminRole",
+						"type": "bytes32"
+					}
+				],
+				"name": "RoleAdminChanged",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "bytes32",
+						"name": "role",
+						"type": "bytes32"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "account",
+						"type": "address"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "sender",
+						"type": "address"
+					}
+				],
+				"name": "RoleGranted",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "bytes32",
+						"name": "role",
+						"type": "bytes32"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "account",
+						"type": "address"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "sender",
+						"type": "address"
+					}
+				],
+				"name": "RoleRevoked",
+				"type": "event"
+			},
+			{
+				"inputs": [],
+				"name": "CANCELLER_ROLE",
+				"outputs": [
+					{
+						"internalType": "bytes32",
+						"name": "",
+						"type": "bytes32"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "DEFAULT_ADMIN_ROLE",
+				"outputs": [
+					{
+						"internalType": "bytes32",
+						"name": "",
+						"type": "bytes32"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "EXECUTOR_ROLE",
+				"outputs": [
+					{
+						"internalType": "bytes32",
+						"name": "",
+						"type": "bytes32"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "NAME",
+				"outputs": [
+					{
+						"internalType": "string",
+						"name": "",
+						"type": "string"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "PROPOSER_ROLE",
+				"outputs": [
+					{
+						"internalType": "bytes32",
+						"name": "",
+						"type": "bytes32"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "SAFE",
+				"outputs": [
+					{
+						"internalType": "contract GnosisSafe",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "TIMELOCK_ADMIN_ROLE",
+				"outputs": [
+					{
+						"internalType": "bytes32",
+						"name": "",
+						"type": "bytes32"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "VERSION",
+				"outputs": [
+					{
+						"internalType": "string",
+						"name": "",
+						"type": "string"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "account",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "receiver",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "burnAmount",
+						"type": "uint256"
+					},
+					{
+						"internalType": "address",
+						"name": "exitToken",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "exitAmount",
+						"type": "uint256"
+					}
+				],
+				"name": "assembleExitViaTrustee",
+				"outputs": [
+					{
+						"internalType": "bytes",
+						"name": "data",
+						"type": "bytes"
+					}
+				],
+				"stateMutability": "pure",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "payer",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "receiver",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "mintAmount",
+						"type": "uint256"
+					},
+					{
+						"internalType": "address",
+						"name": "investToken",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "investAmount",
+						"type": "uint256"
+					}
+				],
+				"name": "assembleJoinViaTrustee",
+				"outputs": [
+					{
+						"internalType": "bytes",
+						"name": "data",
+						"type": "bytes"
+					}
+				],
+				"stateMutability": "pure",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bytes32",
+						"name": "id",
+						"type": "bytes32"
+					}
+				],
+				"name": "cancel",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "target",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "value",
+						"type": "uint256"
+					},
+					{
+						"internalType": "bytes",
+						"name": "payload",
+						"type": "bytes"
+					},
+					{
+						"internalType": "bytes32",
+						"name": "predecessor",
+						"type": "bytes32"
+					},
+					{
+						"internalType": "bytes32",
+						"name": "salt",
+						"type": "bytes32"
+					}
+				],
+				"name": "execute",
+				"outputs": [],
+				"stateMutability": "payable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address[]",
+						"name": "targets",
+						"type": "address[]"
+					},
+					{
+						"internalType": "uint256[]",
+						"name": "values",
+						"type": "uint256[]"
+					},
+					{
+						"internalType": "bytes[]",
+						"name": "payloads",
+						"type": "bytes[]"
+					},
+					{
+						"internalType": "bytes32",
+						"name": "predecessor",
+						"type": "bytes32"
+					},
+					{
+						"internalType": "bytes32",
+						"name": "salt",
+						"type": "bytes32"
+					}
+				],
+				"name": "executeBatch",
+				"outputs": [],
+				"stateMutability": "payable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "account",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "receiver",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "burnAmount",
+						"type": "uint256"
+					},
+					{
+						"internalType": "address",
+						"name": "exitToken",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "exitAmount",
+						"type": "uint256"
+					}
+				],
+				"name": "exitViaTrustee",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "getMinDelay",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "duration",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bytes32",
+						"name": "role",
+						"type": "bytes32"
+					}
+				],
+				"name": "getRoleAdmin",
+				"outputs": [
+					{
+						"internalType": "bytes32",
+						"name": "",
+						"type": "bytes32"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bytes32",
+						"name": "id",
+						"type": "bytes32"
+					}
+				],
+				"name": "getTimestamp",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "timestamp",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bytes32",
+						"name": "role",
+						"type": "bytes32"
+					},
+					{
+						"internalType": "address",
+						"name": "account",
+						"type": "address"
+					}
+				],
+				"name": "grantRole",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bytes32",
+						"name": "role",
+						"type": "bytes32"
+					},
+					{
+						"internalType": "address",
+						"name": "account",
+						"type": "address"
+					}
+				],
+				"name": "hasRole",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "target",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "value",
+						"type": "uint256"
+					},
+					{
+						"internalType": "bytes",
+						"name": "data",
+						"type": "bytes"
+					},
+					{
+						"internalType": "bytes32",
+						"name": "predecessor",
+						"type": "bytes32"
+					},
+					{
+						"internalType": "bytes32",
+						"name": "salt",
+						"type": "bytes32"
+					}
+				],
+				"name": "hashOperation",
+				"outputs": [
+					{
+						"internalType": "bytes32",
+						"name": "hash",
+						"type": "bytes32"
+					}
+				],
+				"stateMutability": "pure",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address[]",
+						"name": "targets",
+						"type": "address[]"
+					},
+					{
+						"internalType": "uint256[]",
+						"name": "values",
+						"type": "uint256[]"
+					},
+					{
+						"internalType": "bytes[]",
+						"name": "payloads",
+						"type": "bytes[]"
+					},
+					{
+						"internalType": "bytes32",
+						"name": "predecessor",
+						"type": "bytes32"
+					},
+					{
+						"internalType": "bytes32",
+						"name": "salt",
+						"type": "bytes32"
+					}
+				],
+				"name": "hashOperationBatch",
+				"outputs": [
+					{
+						"internalType": "bytes32",
+						"name": "hash",
+						"type": "bytes32"
+					}
+				],
+				"stateMutability": "pure",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bytes32",
+						"name": "id",
+						"type": "bytes32"
+					}
+				],
+				"name": "isOperation",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "registered",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bytes32",
+						"name": "id",
+						"type": "bytes32"
+					}
+				],
+				"name": "isOperationDone",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "done",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bytes32",
+						"name": "id",
+						"type": "bytes32"
+					}
+				],
+				"name": "isOperationPending",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "pending",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bytes32",
+						"name": "id",
+						"type": "bytes32"
+					}
+				],
+				"name": "isOperationReady",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "ready",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "payer",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "receiver",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "mintAmount",
+						"type": "uint256"
+					},
+					{
+						"internalType": "address",
+						"name": "investToken",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "investAmount",
+						"type": "uint256"
+					}
+				],
+				"name": "joinViaTrustee",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256[]",
+						"name": "",
+						"type": "uint256[]"
+					},
+					{
+						"internalType": "uint256[]",
+						"name": "",
+						"type": "uint256[]"
+					},
+					{
+						"internalType": "bytes",
+						"name": "",
+						"type": "bytes"
+					}
+				],
+				"name": "onERC1155BatchReceived",
+				"outputs": [
+					{
+						"internalType": "bytes4",
+						"name": "",
+						"type": "bytes4"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					},
+					{
+						"internalType": "bytes",
+						"name": "",
+						"type": "bytes"
+					}
+				],
+				"name": "onERC1155Received",
+				"outputs": [
+					{
+						"internalType": "bytes4",
+						"name": "",
+						"type": "bytes4"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					},
+					{
+						"internalType": "bytes",
+						"name": "",
+						"type": "bytes"
+					}
+				],
+				"name": "onERC721Received",
+				"outputs": [
+					{
+						"internalType": "bytes4",
+						"name": "",
+						"type": "bytes4"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bytes32",
+						"name": "role",
+						"type": "bytes32"
+					},
+					{
+						"internalType": "address",
+						"name": "account",
+						"type": "address"
+					}
+				],
+				"name": "renounceRole",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bytes32",
+						"name": "role",
+						"type": "bytes32"
+					},
+					{
+						"internalType": "address",
+						"name": "account",
+						"type": "address"
+					}
+				],
+				"name": "revokeRole",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "target",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "value",
+						"type": "uint256"
+					},
+					{
+						"internalType": "bytes",
+						"name": "data",
+						"type": "bytes"
+					},
+					{
+						"internalType": "bytes32",
+						"name": "predecessor",
+						"type": "bytes32"
+					},
+					{
+						"internalType": "bytes32",
+						"name": "salt",
+						"type": "bytes32"
+					},
+					{
+						"internalType": "uint256",
+						"name": "delay",
+						"type": "uint256"
+					}
+				],
+				"name": "schedule",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address[]",
+						"name": "targets",
+						"type": "address[]"
+					},
+					{
+						"internalType": "uint256[]",
+						"name": "values",
+						"type": "uint256[]"
+					},
+					{
+						"internalType": "bytes[]",
+						"name": "payloads",
+						"type": "bytes[]"
+					},
+					{
+						"internalType": "bytes32",
+						"name": "predecessor",
+						"type": "bytes32"
+					},
+					{
+						"internalType": "bytes32",
+						"name": "salt",
+						"type": "bytes32"
+					},
+					{
+						"internalType": "uint256",
+						"name": "delay",
+						"type": "uint256"
+					}
+				],
+				"name": "scheduleBatch",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "bytes4",
+						"name": "interfaceId",
+						"type": "bytes4"
+					}
+				],
+				"name": "supportsInterface",
+				"outputs": [
+					{
+						"internalType": "bool",
+						"name": "",
+						"type": "bool"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "newDelay",
+						"type": "uint256"
+					}
+				],
+				"name": "updateDelay",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"stateMutability": "payable",
+				"type": "receive"
+			}
+		],
+		"devdoc": {
+			"author": "Troll Meyer ",
+			"details": "White-listed trustees can propose for customers to join or exit the fund at certain price level.      This is done by the following procedure:      - White-listing trustees: Trustees are proposers in the AccessControl contract.      - Proposing Offers: Trustees can propose an offer to join by investing a certain amount of tokens or exit by withdrawing  a certain amount of tokens.      - Time locking: Proposes are time-locked for a while, let's say one day.      - Accepting Offers: The offer is accepted by the gnosis safe, which is the executor in the AccessControl contract.    ",
+			"events": {
+				"CallExecuted(bytes32,uint256,address,uint256,bytes)": {
+					"details": "Emitted when a call is performed as part of operation `id`."
+				},
+				"CallSalt(bytes32,bytes32)": {
+					"details": "Emitted when new proposal is scheduled with non-zero salt."
+				},
+				"CallScheduled(bytes32,uint256,address,uint256,bytes,bytes32,uint256)": {
+					"details": "Emitted when a call is scheduled as part of operation `id`."
+				},
+				"Cancelled(bytes32)": {
+					"details": "Emitted when operation `id` is cancelled."
+				},
+				"MinDelayChange(uint256,uint256)": {
+					"details": "Emitted when the minimum delay for future operations is modified."
+				},
+				"RoleAdminChanged(bytes32,bytes32,bytes32)": {
+					"details": "Emitted when `newAdminRole` is set as ``role``'s admin role, replacing `previousAdminRole` `DEFAULT_ADMIN_ROLE` is the starting admin for all roles, despite {RoleAdminChanged} not being emitted signaling this. _Available since v3.1._"
+				},
+				"RoleGranted(bytes32,address,address)": {
+					"details": "Emitted when `account` is granted `role`. `sender` is the account that originated the contract call, an admin role bearer except when using {AccessControl-_setupRole}."
+				},
+				"RoleRevoked(bytes32,address,address)": {
+					"details": "Emitted when `account` is revoked `role`. `sender` is the account that originated the contract call:   - if using `revokeRole`, it is the admin role bearer   - if using `renounceRole`, it is the role bearer (i.e. `account`)"
+				}
+			},
+			"kind": "dev",
+			"methods": {
+				"cancel(bytes32)": {
+					"details": "Cancel an operation. Requirements: - the caller must have the 'canceller' role."
+				},
+				"execute(address,uint256,bytes,bytes32,bytes32)": {
+					"details": "Execute an (ready) operation containing a single transaction. Emits a {CallExecuted} event. Requirements: - the caller must have the 'executor' role."
+				},
+				"executeBatch(address[],uint256[],bytes[],bytes32,bytes32)": {
+					"details": "Execute an (ready) operation containing a batch of transactions. Emits one {CallExecuted} event per transaction in the batch. Requirements: - the caller must have the 'executor' role."
+				},
+				"getMinDelay()": {
+					"details": "Returns the minimum delay for an operation to become valid. This value can be changed by executing an operation that calls `updateDelay`."
+				},
+				"getRoleAdmin(bytes32)": {
+					"details": "Returns the admin role that controls `role`. See {grantRole} and {revokeRole}. To change a role's admin, use {_setRoleAdmin}."
+				},
+				"getTimestamp(bytes32)": {
+					"details": "Returns the timestamp at which an operation becomes ready (0 for unset operations, 1 for done operations)."
+				},
+				"grantRole(bytes32,address)": {
+					"details": "Grants `role` to `account`. If `account` had not been already granted `role`, emits a {RoleGranted} event. Requirements: - the caller must have ``role``'s admin role. May emit a {RoleGranted} event."
+				},
+				"hasRole(bytes32,address)": {
+					"details": "Returns `true` if `account` has been granted `role`."
+				},
+				"hashOperation(address,uint256,bytes,bytes32,bytes32)": {
+					"details": "Returns the identifier of an operation containing a single transaction."
+				},
+				"hashOperationBatch(address[],uint256[],bytes[],bytes32,bytes32)": {
+					"details": "Returns the identifier of an operation containing a batch of transactions."
+				},
+				"isOperation(bytes32)": {
+					"details": "Returns whether an id correspond to a registered operation. This includes both Pending, Ready and Done operations."
+				},
+				"isOperationDone(bytes32)": {
+					"details": "Returns whether an operation is done or not."
+				},
+				"isOperationPending(bytes32)": {
+					"details": "Returns whether an operation is pending or not."
+				},
+				"isOperationReady(bytes32)": {
+					"details": "Returns whether an operation is ready or not."
+				},
+				"onERC1155BatchReceived(address,address,uint256[],uint256[],bytes)": {
+					"details": "See {IERC1155Receiver-onERC1155BatchReceived}."
+				},
+				"onERC1155Received(address,address,uint256,uint256,bytes)": {
+					"details": "See {IERC1155Receiver-onERC1155Received}."
+				},
+				"onERC721Received(address,address,uint256,bytes)": {
+					"details": "See {IERC721Receiver-onERC721Received}."
+				},
+				"renounceRole(bytes32,address)": {
+					"details": "Revokes `role` from the calling account. Roles are often managed via {grantRole} and {revokeRole}: this function's purpose is to provide a mechanism for accounts to lose their privileges if they are compromised (such as when a trusted device is misplaced). If the calling account had been revoked `role`, emits a {RoleRevoked} event. Requirements: - the caller must be `account`. May emit a {RoleRevoked} event."
+				},
+				"revokeRole(bytes32,address)": {
+					"details": "Revokes `role` from `account`. If `account` had been granted `role`, emits a {RoleRevoked} event. Requirements: - the caller must have ``role``'s admin role. May emit a {RoleRevoked} event."
+				},
+				"schedule(address,uint256,bytes,bytes32,bytes32,uint256)": {
+					"details": "Schedule an operation containing a single transaction. Emits events {CallScheduled} and {CallSalt}. Requirements: - the caller must have the 'proposer' role."
+				},
+				"scheduleBatch(address[],uint256[],bytes[],bytes32,bytes32,uint256)": {
+					"details": "Schedule an operation containing a batch of transactions. Emits a {CallSalt} event and one {CallScheduled} event per transaction in the batch. Requirements: - the caller must have the 'proposer' role."
+				},
+				"supportsInterface(bytes4)": {
+					"details": "See {IERC165-supportsInterface}."
+				},
+				"updateDelay(uint256)": {
+					"details": "Changes the minimum timelock duration for future operations. Emits a {MinDelayChange} event. Requirements: - the caller must be the timelock itself. This can only be achieved by scheduling and later executing an operation where the timelock is the target and the data is the ABI-encoded call to this function."
+				}
+			},
+			"title": "Trustee Module - A module for trustee to join and exit the fund by interacting with the Cruiser (fund based on gnosis safe)",
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"TrusteeModule.sol": "TrusteeModule"
+		},
+		"evmVersion": "paris",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": true,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"Cruiser.sol": {
+			"keccak256": "0xa78768454c95926653882133296fc45ed8fcf0f360447be7cf8dedebff46250f",
+			"license": "LGPL-3.0-only",
+			"urls": [
+				"bzz-raw://fc8fc0e70d666432a2ba695d8bfa103a37d8b930fb2a8f2d1c781599efcec263",
+				"dweb:/ipfs/QmSR9aGiPCdyn8b39Ns7qUZ7pVri29dnA2mCkwy3nYnGQt"
+			]
+		},
+		"TrusteeModule.sol": {
+			"keccak256": "0x889f808bafbbdbc8ef327f0c245285bc5f455a400369791ab65dcdbeb43df35a",
+			"license": "LGPL-3.0-only",
+			"urls": [
+				"bzz-raw://cf12f46f059968197ad7295d52f8c958f7715b4c06de17b994dd52e3aa3c3f14",
+				"dweb:/ipfs/QmV4iFEh1jhMabz7yn96vA7q7Px54MpGrs98Zp6cGKadVL"
+			]
+		},
+		"interface/GnosisSafe.sol": {
+			"keccak256": "0x6ef0e465a30e689562d73a2e20128fc3946d285ba4e6dd7c3c5c7a0caadc7945",
+			"license": "LGPL-3.0-only",
+			"urls": [
+				"bzz-raw://3f3d656a7242fb29f3829e40c10cb7887ba7a898383dbca8cfdaa287f4a1a1ec",
+				"dweb:/ipfs/QmWVBw8XuR4cJraCXNKvYeWcvuVovGD1CjXPkpwCb1vFid"
+			]
+		},
+		"libraries/TransferHelper.sol": {
+			"keccak256": "0xeea8564e527b64b5201b31c01f713ee2b6897eb63fb83bf1b0da7a82b668b60c",
+			"license": "GPL-3.0-or-later",
+			"urls": [
+				"bzz-raw://936050173b4c572e0193bb232579b2fe5a714faa83c43476568c707c022674f4",
+				"dweb:/ipfs/QmQzNm9bZ546rak7DZaucYZFU1dUUVrEFbTf9RqLG3XekD"
+			]
+		},
+		"openzeppelin/access/AccessControl.sol": {
+			"keccak256": "0xbc7fc49ba05b312e318d3d7b517ed0254489320bedef2e91f80c3bd4e904fc0c",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://e411d112f89fcadbff89da0579d61eafdf76272aaa91fb18728a86337440bb88",
+				"dweb:/ipfs/QmfKJqMJ2CF1mw4UwDajoFdrrfKWSZwetkAByUP56EeqSQ"
+			]
+		},
+		"openzeppelin/access/IAccessControl.sol": {
+			"keccak256": "0x89c6c2a63dc6c357c6108de150ab329ad7f847f3ff00a35bcd55f769f4ebcad4",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://cadec590da43255289e7db8e08a0760869efa64c543dbd8af46690ce5295d497",
+				"dweb:/ipfs/QmZsPSyWeA3aZgDgtXMMx11wvTadrf5FzrxkWDbUfM11Ue"
+			]
+		},
+		"openzeppelin/governance/TimelockController.sol": {
+			"keccak256": "0x9deec49a6049e9b9a4ee1581415e3966cfa976c1c73346619a210a729efb9276",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://0b5e7727468a0af21ee25a83e2592659b4141a08c674f29608c3c0a92f8a0895",
+				"dweb:/ipfs/QmZu7k4nMr26toDYJXKgxomxDWAGzkWj9sN8tLheo6EWw7"
+			]
+		},
+		"openzeppelin/token/ERC1155/IERC1155Receiver.sol": {
+			"keccak256": "0x4c62fb1ff49a84ffee40271080b61f32cf5592c7f8fd1114d7d7d34ecc4d2822",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://42f766a6007841e403d5ebb43e762373ac349da217b3360946ffa1f9795228c0",
+				"dweb:/ipfs/QmQAgnmhDVv62cLNhpSwkc7z5xTvLcDFB8ieuHBs3bufdS"
+			]
+		},
+		"openzeppelin/token/ERC20/ERC20.sol": {
+			"keccak256": "0x65c18f8f3f113a38ad81b70b927f72d0d4c5be7e204e715a82da7f3e04aa5bb4",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://c1406a337a5c2a595ca1b777c8d3ee1acf74963f6d3bc391bee446ffafdc8b65",
+				"dweb:/ipfs/QmSbC3AikgqLSj6XucgCu5D8G14CyhL9vnqCFdWkxjdY8J"
+			]
+		},
+		"openzeppelin/token/ERC20/IERC20.sol": {
+			"keccak256": "0x206e252911fb60d0d6a54fb657b64344c33fa237ddb8553aa668a24d1856a7c2",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://4cb73e8c2fd4ab43f4ed672a19fd7629fc169034dc461524bebd67d9fe9bb000",
+				"dweb:/ipfs/Qmd9wCoy5gDduquSq7po6uNFx9W28zS5drXXErDnN24aNZ"
+			]
+		},
+		"openzeppelin/token/ERC20/extensions/IERC20Metadata.sol": {
+			"keccak256": "0x0270cb4e50d6bcdd780df229606076d39df796860d266b5426f374c36f34fe89",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://511db944b3f0a57b56fda90d1e466cca6a0dea2297d816251966c8f025313973",
+				"dweb:/ipfs/QmRgu5uCaKkoRr3amWGfhy6bVwhpH5tr1vynaNQyEYiE4p"
+			]
+		},
+		"openzeppelin/token/ERC721/IERC721Receiver.sol": {
+			"keccak256": "0xc97c28f24caed758d150587f1e57753705c2439f314ac47947739869c4413819",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://b2319c1a8e34937da319c0a443a3fa9567994a9fc327be7186c7738573bcfa2f",
+				"dweb:/ipfs/QmTSesyJCFLrjSJm5FoVLR1kXM26CnxVy1Ti9HHx31ZyJ2"
+			]
+		},
+		"openzeppelin/utils/Address.sol": {
+			"keccak256": "0x914d5706ddfb58b3e31b1daa3407fba0bf036372d174ed061ce22ad53638e2b0",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://09064559eb1e064f78a974a1d6c6361cdec939691f46fbb080c6a5afd4360b5e",
+				"dweb:/ipfs/QmUt8JGiyJsvP2qX7K3db6io9LMgkjqb4aB7sQ4Y2JzaYE"
+			]
+		},
+		"openzeppelin/utils/Context.sol": {
+			"keccak256": "0x2c36c9489879b7c91cdd73bbe8b2584f401aa26f4f252c04f053e824d6ca75c6",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://3ef20575fc12fd27f252acd28a8d0f65893832f29fd9c82f7ec165121af4572f",
+				"dweb:/ipfs/QmZMCoWWDTjhs1CNFMWv4JNWVyyeuzyqteCHhF4heCUYJJ"
+			]
+		},
+		"openzeppelin/utils/Strings.sol": {
+			"keccak256": "0xb0112adf903226f1ac22a142fdc0ff730cb0fae1102be069d97e11cbac1056c9",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://d37cc886f5cfde4afaa68c9b0ef924dad9af4461a973aac9f562b0000edce63b",
+				"dweb:/ipfs/QmdvQZ7PmTkbSnjxkoSeADmPT2pbXUeQULQLVgXkDfx69x"
+			]
+		},
+		"openzeppelin/utils/introspection/ERC165.sol": {
+			"keccak256": "0x4805c08720aa301162ebb3951b0b1ab56186eef9726927eb1360f50fb4fab66e",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://4b6a8ba58d961f927a3ae24ee61a32b8e436016afe8ccb751063c8860e52a686",
+				"dweb:/ipfs/QmRi1hjPpeR9D5rHB6vd6ZPmfMVdq7ZjMU5xmpjvBsbGG3"
+			]
+		},
+		"openzeppelin/utils/math/Math.sol": {
+			"keccak256": "0xc32ad0bcf24ae2b3fcf3d011f58541c7403a478598e2b6ba1e5a7d362a1aef23",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://1785f66e9850ec2d9a908075efeffaccc4747db702317ac4fb3918a140808838",
+				"dweb:/ipfs/QmR8m2pbHatLxvaGpKU2AEym1q4VXqHbCmGdt6GSa9BFah"
+			]
+		},
+		"openzeppelin/utils/math/SignedMath.sol": {
+			"keccak256": "0x7b249694790ca2ae6a813e28025e0ebb9bccb5940a6cba637911fd9c17012055",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://2431f8875ede10b23dee66740a19fb1b2aa7cf57ea8430e7bce97be414c58748",
+				"dweb:/ipfs/QmbCvNgrYi2kk7wBKJkwyRRrbwabhoxaNJjyK5frPkNvng"
+			]
+		},
+		"safe/Safe.sol": {
+			"keccak256": "0xdeaaec6d0c14e8669a5593ea0ad93109661027d5959243f4722e224a65b6b531",
+			"license": "LGPL-3.0-only",
+			"urls": [
+				"bzz-raw://cf220c2644c7a7fab7360764769a68e4de7fe8aa924d2507ca4567576abe830f",
+				"dweb:/ipfs/QmRuWsU9tqb6JPdwqPtbunKtzvb1xLqUNcnKYcLjMmG78x"
+			]
+		},
+		"safe/base/Executor.sol": {
+			"keccak256": "0xbb3e6d83c3af666762b190e9ad00f31f577062954d5ae70fdf9d12fa74a51654",
+			"license": "LGPL-3.0-only",
+			"urls": [
+				"bzz-raw://4c1c352cb62f2afbe8d1d7c689ba15b798efe98a8b5314922bfa68b1d862eaad",
+				"dweb:/ipfs/QmVNsnD6E5t9tcyF6ZgWCi75LdN7iGkJdb1dohPcE5PQy3"
+			]
+		},
+		"safe/base/FallbackManager.sol": {
+			"keccak256": "0x457a07fd77be5572c971dde9ee90888136b017e5f476b13ef2928a9341b3213d",
+			"license": "LGPL-3.0-only",
+			"urls": [
+				"bzz-raw://ea8979ccf92b8cec30421349e312e1411d592901cfb86b553777066a0f78d715",
+				"dweb:/ipfs/QmVNJtHC2DjonVXFBJ3VpJUXtQA1bJeCrSucQNyTLXRD7v"
+			]
+		},
+		"safe/base/GuardManager.sol": {
+			"keccak256": "0xa6fd43cd6ed443c1eaed7e210eef9fbd2ae6eaa2cf6f01f64efa9a42bf5dc61e",
+			"license": "LGPL-3.0-only",
+			"urls": [
+				"bzz-raw://eb2bbdfc8d9a3550d049f6efa308125a48896151e4706c72b93720f34f038465",
+				"dweb:/ipfs/QmTqUnhndi4bD81mB5yF65LyxNY5qZTA4Ncth3YkZ7YYtR"
+			]
+		},
+		"safe/base/ModuleManager.sol": {
+			"keccak256": "0xe87a731ba8733810c6898664ab31230a890f1c4477e909b78b6c6abe03d50c0b",
+			"license": "LGPL-3.0-only",
+			"urls": [
+				"bzz-raw://7fdbdd7ae44af84bae6103663d64ff86dadc53a51cb4582c62352fe845112da9",
+				"dweb:/ipfs/QmVq1FsC41yjqoHhjaPZW2FEGXWQNfb6gET7Lm4yFc3w8N"
+			]
+		},
+		"safe/base/OwnerManager.sol": {
+			"keccak256": "0xd15452b10b4cb7a13688f526a6767650aece5817285997790729cbc6af50d775",
+			"license": "LGPL-3.0-only",
+			"urls": [
+				"bzz-raw://711fc984a1393040e21b05fdd146741c429988cf0156277e7db94e922749fa36",
+				"dweb:/ipfs/QmRr6asi11Dt6R8H7hxh2krzbV6j7GVfMF9hY2cTE3e3WS"
+			]
+		},
+		"safe/common/Enum.sol": {
+			"keccak256": "0xbba96a36a652a63ab1971254474595fd2bb3741f0f589bcf85fccc79d42285bd",
+			"license": "LGPL-3.0-only",
+			"urls": [
+				"bzz-raw://1476f4efd26bd34822318d506d32ea87df53653fdce35dbfde004a149dac1d22",
+				"dweb:/ipfs/QmVGx4Bm3EE3wao59Ezck6bsyZ8rc7ALe74XCq9ctSWToz"
+			]
+		},
+		"safe/common/NativeCurrencyPaymentFallback.sol": {
+			"keccak256": "0xbfe4b360d701aadb4464ff9f47fd34dd2ad9265a4db281b4a1fb540ba6693cd3",
+			"license": "LGPL-3.0-only",
+			"urls": [
+				"bzz-raw://fce67cb4d8dbf64c803237ff204296fa1b8f9edf607d17c93bdca50277b3e252",
+				"dweb:/ipfs/QmbE1GrJ9dg1MAV8skPgeoxEdGekcax2Meg7RGQFHyqDNm"
+			]
+		},
+		"safe/common/SecuredTokenTransfer.sol": {
+			"keccak256": "0x0cccd5b17b67f1555aacaf3f0c244c10fef90c37d74b5bf9529a70b3f8e15e1b",
+			"license": "LGPL-3.0-only",
+			"urls": [
+				"bzz-raw://ffd3f5bf317a0f0a8a24350016e2ba9a1fb1176318840b444f00885f86b5b9fc",
+				"dweb:/ipfs/QmaSGKuqAdKSKrNxxmzcfcGmWKmXYwXbbpTM5Mc96aMkN9"
+			]
+		},
+		"safe/common/SelfAuthorized.sol": {
+			"keccak256": "0xbf093baddfd5741f8b496b403e0dfc74b8d7968f8c2fd3e726d13fe0d0a463d7",
+			"license": "LGPL-3.0-only",
+			"urls": [
+				"bzz-raw://6b463f0e814d3c9508c416583e9215a641521cb8cee958cc7cdacab953498cb3",
+				"dweb:/ipfs/QmRrzLRLUBCXJDUCUZM6Zyy6oEV5oKAXvM49hRPrM8LwGk"
+			]
+		},
+		"safe/common/SignatureDecoder.sol": {
+			"keccak256": "0xf7841ad2ea634e128e57b9c70b7eea0587b3696fffae5fe7f0eb333119b09f2c",
+			"license": "LGPL-3.0-only",
+			"urls": [
+				"bzz-raw://f12c9654910660668f5999160e2149774dc448e13703ebd4db3a6927b5642aa2",
+				"dweb:/ipfs/QmT33RhGEJEDHiKwgiw9euxtpvFthPAdBNg74P57U4Uq4N"
+			]
+		},
+		"safe/common/Singleton.sol": {
+			"keccak256": "0x7640c4efb424a2ee49180368a225b19c70f315ba5c1c65ae0d1413df54d941cc",
+			"license": "LGPL-3.0-only",
+			"urls": [
+				"bzz-raw://d978800ce6a89748ffda70fa0f84310eda1b17ab63601fa85afb357f0ccbcfa8",
+				"dweb:/ipfs/QmNiBhZAYtPoRoCaKxWXYs7TtCjXo8zHbPCbdrcYvaHVJa"
+			]
+		},
+		"safe/common/StorageAccessible.sol": {
+			"keccak256": "0x9bcb970491e568d1e86c9cdbb11c28f7ae8a335e715377350a5c24e804022289",
+			"license": "LGPL-3.0-only",
+			"urls": [
+				"bzz-raw://19815daa67075c22e1acf5bbbf358fa9dba928f93eab8a62c915ebdee3b88b48",
+				"dweb:/ipfs/QmZ4Rox8YbY9eLiwKk5CXHHYVmmiHBxZaMGMozRFFrDF9M"
+			]
+		},
+		"safe/external/SafeMath.sol": {
+			"keccak256": "0xa1c6b35e6adaa61f473db3e660b238826d37cf36a6c82ee3d140314d80295bab",
+			"license": "LGPL-3.0-only",
+			"urls": [
+				"bzz-raw://627530198d208c3788a766530313f6879165498156b0f1561dcc986e7c4caa2c",
+				"dweb:/ipfs/QmQZJwgZk4FVG4vm7WLmJH2H4kkDiwY9Cnwp6GWqjmpx1w"
+			]
+		},
+		"safe/interfaces/IERC165.sol": {
+			"keccak256": "0x9606d417e73b051594c5270abb703dd4d164b3da737aafd2b8d0c2407c19b093",
+			"license": "LGPL-3.0-only",
+			"urls": [
+				"bzz-raw://46073f9beca1b9323a27bc6a90ad1ae052a0814f2aa34e3d703da14f4c65479b",
+				"dweb:/ipfs/QmTSTLwVtnugBR5WYh8Y75DaLKap8bQvbTzE7McoxzejU8"
+			]
+		},
+		"safe/interfaces/ISignatureValidator.sol": {
+			"keccak256": "0x6fca6665b4f5fc288dd619f044e415647f1e5aa6091bbdf9b57c8611c8e2d53b",
+			"license": "LGPL-3.0-only",
+			"urls": [
+				"bzz-raw://9a67ad4dcc7f7e8fc16315c0f87774277dcd4ba134bc851349a10865d25b4efb",
+				"dweb:/ipfs/QmdPZX3YwXg5oKk347EA8puw5ytWr75cpE8avC85fxmJCh"
+			]
+		}
+	},
+	"version": 1
+}

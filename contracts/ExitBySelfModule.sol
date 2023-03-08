@@ -22,19 +22,19 @@ contract ExitBySelfModule {
     GnosisSafe public SAFE;
 
     constructor (address bindingSafe){
-        SAFE = bindingSafe;
+        SAFE = GnosisSafe(bindingSafe);
     }
 
-    function exitAndBurn(
+    function burnAndExit(
         address receiver,
         uint256 burnAmount,
-        address[] exitTokens
+        address[] calldata exitTokens
     ) external returns(bool success){
         //execTransactionFromModule(address to, uint256 value, bytes calldata data, Enum.Operation operation)
         success = SAFE.execTransactionFromModule(
-            SAFE.address,
+            address(SAFE),
             0,
-            abi.encodeWithSelector(Cruiser.exitAndBurn.selector, msg.sender, receiver, burnAmount, exitTokens),
+            abi.encodeWithSelector(Cruiser.burnAndExit.selector, msg.sender, receiver, burnAmount, exitTokens),
             Enum.Operation.Call
         );
         require(success, "transaction failed");
